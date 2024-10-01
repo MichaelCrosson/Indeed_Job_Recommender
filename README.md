@@ -1,4 +1,5 @@
 # Scraping Indeed.com | HTML Download via Playwright | HTML Parse via BeautifulSoup | Step By Step
+## You may find the step-by-step video tutorial about this project on [▶️ YouTube](https://youtu.be/KZacZjrewUo).
 
 ![Indeed.com Scraper](https://img.shields.io/badge/Scraper-Indeed.com-blue?style=for-the-badge&logo=indeed)
 ![Python](https://img.shields.io/badge/Python-3.7%2B-yellow?style=for-the-badge&logo=python)
