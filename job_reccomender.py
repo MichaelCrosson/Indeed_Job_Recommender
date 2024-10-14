@@ -62,8 +62,13 @@ job_listings = job_listings.dropna(subset=['Title'])
 # Accept User inputs for resume and job aspects
 resume = input("Enter your resume: ")
 blurb = input("Enter your preferences for a job: ")
+
+# Prefrence flags
 # Set to false if looking for internships and part-time jobs as well
 fulltime_flag = True
+blurb_weight = 1
+resume_weight = 1
+skill_weight = 1
 
 # Resume summarization code
 content = f"""
@@ -147,7 +152,7 @@ df_similarity = pd.DataFrame({
     'company_location': job_listings['Company Location'],
     'description': job_listings['Description'],
     'cleaned_description': job_listings['Cleaned_Description'],
-    'similarity_score': cosine_sim
+    'similarity_score': (cosine_sim * resume_weight)
 })
 
 # Save the results to a CSV file
@@ -248,7 +253,7 @@ cosine_sim = cosine_similarity(df.iloc[0:1], df.iloc[1:]).flatten()
 company_similarity = pd.DataFrame({
     'company': pivoted_topics['Company'],
     'dominant_topic': pivoted_topics['Dominant_Topic'],
-    'similarity_scores': cosine_sim
+    'similarity_scores': (cosine_sim * blurb_weight)
 })
 
 # Save the results to a CSV file
@@ -298,7 +303,7 @@ def calculate_skill_proportion(resume_skills, description_skills):
 
 merged_df['skill_proportion'] = merged_df.apply(lambda row: calculate_skill_proportion(resume_skills, row['description_skills']), axis=1)
 
-merged_df['final_score'] = merged_df['final_similarity_score'] + merged_df['skill_proportion']
+merged_df['final_score'] = merged_df['final_similarity_score'] + ((merged_df['skill_proportion'] / 2) * skill_weight)
 
 # Create the final DataFrame with the required columns
 final_df = merged_df[['company', 'job_title', 'description', 'final_score', 'skill_proportion']]
