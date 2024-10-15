@@ -1,3 +1,5 @@
+# Team members
+# Michael Crosson, Andy Ma, Destin Blanchard, Sarah Dominguez, Brooks Li, Brinda Asuri
 # Must pip install API 
 from playwright.sync_api import sync_playwright
 import time
