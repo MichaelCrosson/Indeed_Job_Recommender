@@ -1,3 +1,5 @@
+# Team members
+# Michael Crosson, Andy Ma, Destin Blanchard, Sarah Dominguez, Brooks Li, Brinda Asuri
 import os
 import time
 # Must pip install API 
